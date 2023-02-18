@@ -17,13 +17,11 @@ public final class Audio {
 extension Audio: AudioBridge {
     public func app(state: System.App.State) async {
         switch state {
-        case .willFinishLaunching:
-            break
-//            do { try await daemon.start() }
-//            catch { log(event: "Failed to start daemon, error: \(error)", source: .audio) }
         case .didFinishLaunching:
             do { try await initializer.start() }
             catch { log(event: "Failed to initialize device, error: \(error)", source: .audio) }
+            do { try await daemon.start() }
+            catch { log(event: "Failed to start daemon, error: \(error)", source: .audio) }
         case .willTerminate:
             do { try await daemon.stop() }
             catch { log(event: "Failed to stop daemon, error: \(error)", source: .audio) }

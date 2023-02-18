@@ -10,11 +10,11 @@ internal class Daemon {
     internal func start(with arguments: Set<Argument> = [.disableTray]) async throws {
         guard let daemon else { throw Audio.Error.daemonPath }
         process = Process()
-        try process.start(daemon, with: arguments.strings)
+        try await process.start(daemon, with: arguments.strings)
         log(event: "Daemon started successfully", source: .audio)
     }
     internal func stop(forced: Bool = false) async throws {
-        try process.stop(forced: forced)
+        try await process.stop(forced: forced)
         log(event: "Daemon stopped successfully", source: .audio)
     }
     internal func restart() async throws {
