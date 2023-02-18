@@ -24,6 +24,13 @@ let package = Package(
             name: "AudioKit",
             dependencies: [
                 .product(name: "CoreKit", package: "CoreKit")
+            ],
+            resources: [
+                .process("Resources/Agents/com.multixlr.goxlr.plist"),
+                .process("Resources/Agents/com.multixlr.goxlr.mini.plist"),
+                .process("Resources/Executables/goxlr-daemon"),
+                .process("Resources/Executables/goxlr-initializer"),
+                .process("Resources/Executables/goxlr-xpchandler")
             ]
         ),
         .testTarget(
