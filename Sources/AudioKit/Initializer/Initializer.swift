@@ -7,7 +7,7 @@ fileprivate let mini = Bundle.module.url(forResource: "com.multixlr.goxlr.mini",
 fileprivate let agents = Bundle.main.bundleURL.appending(path: "Contents/Library/LaunchAgents")
 fileprivate let handler = Bundle.module.url(forResource: "goxlr-xpchandler", withExtension: "")
 fileprivate let initializer = Bundle.module.url(forResource: "goxlr-initializer", withExtension: "")
-fileprivate let directory = try? URL(for: .applicationSupportDirectory, in: .systemDomainMask).appending(path: "\(System.App.bundle)")
+fileprivate let directory = try? URL(for: .applicationSupportDirectory, in: .userDomainMask).appending(path: "\(System.App.bundle)")
 
 internal class Initializer {
     public func start() async throws {

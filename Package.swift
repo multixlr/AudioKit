@@ -17,12 +17,17 @@ let package = Package(
         .package(
             url: "https://github.com/multixlr/CoreKit.git",
             branch: "main"
+        ),
+        .package(
+            url: "https://github.com/rnine/SimplyCoreAudio.git",
+            from: "4.1.0"
         )
     ],
     targets: [
         .target(
             name: "AudioKit",
             dependencies: [
+                "SimplyCoreAudio",
                 .product(name: "CoreKit", package: "CoreKit")
             ],
             resources: [

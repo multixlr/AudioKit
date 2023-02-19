@@ -1,19 +1,21 @@
 import CoreKit
 import Foundation
 
+internal let queue = DispatchQueue(label: "com.audio.queue", qos: .userInteractive, attributes: .concurrent)
+
 public final class Audio {
     public static let shared = Audio()
     
+    private let core = Core()
     private let daemon = Daemon()
     private let initializer = Initializer()
         
     public func initialize() {}
     private init() {
         log(event: "AudioKit initialized")
-        Core.shared.audio = self
+        CoreKit.Core.shared.audio = self
     }
 }
-
 extension Audio: AudioBridge {
     public func app(state: System.App.State) async {
         switch state {
@@ -30,4 +32,7 @@ extension Audio: AudioBridge {
         }
     }
     public func user(state: System.User.State) async {}
+}
+extension Audio {
+    public var devices: [Audio.Device] { core.devices }
 }
