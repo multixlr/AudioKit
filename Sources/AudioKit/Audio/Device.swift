@@ -9,3 +9,14 @@ extension Audio {
         public let name: String
     }
 }
+
+extension Audio.Device {
+    public func immutable(source: Audio.Source) -> Bool {
+        switch source {
+        case .output:
+            return Settings.Audio.Output.immutable == uid
+        case .input:
+            return Settings.Audio.Input.immutable == uid
+        }
+    }
+}

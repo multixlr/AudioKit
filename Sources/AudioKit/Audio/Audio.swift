@@ -34,5 +34,10 @@ extension Audio: AudioBridge {
     public func user(state: System.User.State) async {}
 }
 extension Audio {
+    public static func set(immutable device: Audio.Device?, for source: Audio.Source, selected: Bool = true) {
+        shared.core.set(immutable: device, for: source, selected: selected)
+    }
     public var devices: [Audio.Device] { core.devices }
+    public var outputs: [Audio.Device] { core.outputs }
+    public var inputs: [Audio.Device] { core.inputs }
 }
